@@ -30,7 +30,7 @@ public class FloorTeleport : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             _playerNearby = true;
             MessageUI.Instance?.ShowPrompt(PromptText);
@@ -39,7 +39,7 @@ public class FloorTeleport : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             _playerNearby = false;
             MessageUI.Instance?.HidePrompt();

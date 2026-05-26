@@ -3,41 +3,41 @@ using UnityEngine.SceneManagement;
 
 public class DoorTeleport : MonoBehaviour
 {
-    [Header("Ä¿±ê³¡¾°Ãû³Æ£¨ºÍ¹¹½¨ÉèÖÃÀïµÄÒ»ÖÂ£©")]
+    [Header("ç›®æ ‡åœºæ™¯åç§°ï¼ˆå’Œæ„å»ºè®¾ç½®é‡Œçš„ä¸€è‡´ï¼‰")]
     public string targetSceneName = "Inside";
-    [Header("ÎİÄÚ³öÉúµãÎïÌåÃû³Æ")]
+    [Header("å±‹å†…å‡ºç”Ÿç‚¹ç‰©ä½“åç§°")]
     public string spawnPointName = "PlayerSpawnPoint";
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ö»¶Ô Player ±êÇ©µÄÎïÌåÉúĞ§
-        if (other.CompareTag("Player"))
+        // åªå¯¹ Player æ ‡ç­¾çš„ç‰©ä½“ç”Ÿæ•ˆ
+        if (other.CompareTag("Character"))
         {
-            Debug.Log("´¥·¢ÁË´«ËÍ£¬×¼±¸¼ÓÔØ³¡¾°£º" + targetSceneName);
-            // ×¢²á³¡¾°¼ÓÔØÍê³ÉÊÂ¼ş
+            Debug.Log("è§¦å‘äº†ä¼ é€ï¼Œå‡†å¤‡åŠ è½½åœºæ™¯ï¼š" + targetSceneName);
+            // æ³¨å†Œåœºæ™¯åŠ è½½å®Œæˆäº‹ä»¶
             SceneManager.sceneLoaded += OnSceneLoaded;
-            // ¼ÓÔØÄ¿±ê³¡¾°
+            // åŠ è½½ç›®æ ‡åœºæ™¯
             SceneManager.LoadScene(targetSceneName);
         }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // È¡ÏûÊÂ¼ş×¢²á£¬·ÀÖ¹ÖØ¸´µ÷ÓÃ
+        // å–æ¶ˆäº‹ä»¶æ³¨å†Œï¼Œé˜²æ­¢é‡å¤è°ƒç”¨
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        // ÕÒµ½Íæ¼ÒºÍ³öÉúµã
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        // æ‰¾åˆ°ç©å®¶å’Œå‡ºç”Ÿç‚¹
+        GameObject player = GameObject.FindGameObjectWithTag("Character");
         GameObject spawn = GameObject.Find(spawnPointName);
 
         if (player != null && spawn != null)
         {
             player.transform.position = spawn.transform.position;
-            Debug.Log("´«ËÍ³É¹¦£¬Íæ¼ÒÒÑ¶¨Î»µ½³öÉúµã");
+            Debug.Log("ä¼ é€æˆåŠŸï¼Œç©å®¶å·²å®šä½åˆ°å‡ºç”Ÿç‚¹");
         }
         else
         {
-            Debug.LogError("´«ËÍÊ§°Ü£¡Íæ¼Ò»ò³öÉúµãÕÒ²»µ½£¬Çë¼ì²éÃû³ÆºÍ±êÇ©");
+            Debug.LogError("ä¼ é€å¤±è´¥ï¼ç©å®¶æˆ–å‡ºç”Ÿç‚¹æ‰¾ä¸åˆ°ï¼Œè¯·æ£€æŸ¥åç§°å’Œæ ‡ç­¾");
         }
     }
 }

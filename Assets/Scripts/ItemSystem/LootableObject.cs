@@ -27,32 +27,47 @@ public class LootableObject : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         if (GlowEffect != null)
             GlowEffect.SetActive(false);
+        
+        Debug.Log($"[{gameObject.name}] LootableObject 初始化完成");
     }
 
     void Update()
     {
         if (_playerNearby && !_isOpened && Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log($"[{gameObject.name}] 按E拾取！");
             OpenLoot();
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log($"[{gameObject.name}] 触发器进入: {other.name}, Tag: {other.tag}");
+        
+        if (other.CompareTag("Character"))
         {
             _playerNearby = true;
             if (GlowEffect != null)
                 GlowEffect.SetActive(true);
             
             // 显示提示
-            MessageUI.Instance?.ShowPrompt(InteractionPrompt);
+            if (MessageUI.Instance != null)
+            {
+                MessageUI.Instance.ShowPrompt(InteractionPrompt);
+                Debug.Log($"[{gameObject.name}] 显示提示: {InteractionPrompt}");
+            }
+            else
+            {
+                Debug.LogWarning($"[{gameObject.name}] MessageUI.Instance 为 null!");
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log($"[{gameObject.name}] 触发器离开: {other.name}");
+        
+        if (other.CompareTag("Character"))
         {
             _playerNearby = false;
             if (GlowEffect != null)
@@ -66,6 +81,8 @@ public class LootableObject : MonoBehaviour
     {
         if (_isOpened) return;
         _isOpened = true;
+
+        Debug.Log($"[{gameObject.name}] 打开宝箱！");
 
         // 生成随机物品
         int itemCount = Random.Range(MinItems, MaxItems + 1);
@@ -81,6 +98,7 @@ public class LootableObject : MonoBehaviour
                 {
                     GameManager.Instance.PlayerData.AddItem(item);
                     lootMessage += $"- {item.ItemName}\n";
+                    Debug.Log($"[{gameObject.name}] 获得物品: {item.ItemName}");
                 }
             }
         }

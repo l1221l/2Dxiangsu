@@ -23,7 +23,7 @@ public class MessageTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Character"))
         {
             if (TriggerOnce && _hasTriggered)
                 return;

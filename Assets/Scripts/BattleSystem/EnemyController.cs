@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour
         _targetPosition = _startPosition;
         
         // 查找玩家
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("Character");
         if (player != null)
         {
             _playerTransform = player.transform;
