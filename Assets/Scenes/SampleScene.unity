@@ -411,7 +411,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 500185807, guid: c4562790bf689e343bbc5f8635487f33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -841,6 +841,8 @@ GameObject:
   - component: {fileID: 576057490}
   - component: {fileID: 576057489}
   - component: {fileID: 576057491}
+  - component: {fileID: 576057493}
+  - component: {fileID: 576057492}
   m_Layer: 0
   m_Name: npc_0
   m_TagString: Untagged
@@ -960,6 +962,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.19379422}
   m_EdgeRadius: 0
+--- !u!114 &576057492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576057488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8bdc5fcdd6cd144199c32c0d8de088a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyName: "\u53F2\u83B1\u59C6"
+  maxHP: 50
+  currentHP: 50
+  maxMP: 20
+  currentMP: 20
+  attack: 8
+  defense: 3
+  speed: 5
+  expReward: 15
+  isBoss: 0
+  destroyOnDefeat: 1
+  animator: {fileID: 0}
+  idleAnim: Idle
+  attackAnim: Attack
+  canMove: 0
+  moveSpeed: 2
+  moveRange: 3
+  moveInterval: 2
+--- !u!50 &576057493
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576057488}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &593042370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,6 +2001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1442519449}
   - component: {fileID: 1442519450}
+  - component: {fileID: 1442519451}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1991,6 +2051,75 @@ MonoBehaviour:
   - Outside
   - Floor1
   - BossRoom
+--- !u!114 &1442519451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442519448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00696cc2989d9784b927fa2b6bc40cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  isBattleActive: 0
+  playerUnit:
+    Name: 
+    MaxHP: 0
+    CurrentHP: 0
+    MaxMP: 0
+    CurrentMP: 0
+    Attack: 0
+    Defense: 0
+    Speed: 0
+    IsPlayer: 0
+    isDefending: 0
+    isStunned: 0
+    defenseBonus: 0
+  enemyUnit:
+    Name: 
+    MaxHP: 0
+    CurrentHP: 0
+    MaxMP: 0
+    CurrentMP: 0
+    Attack: 0
+    Defense: 0
+    Speed: 0
+    IsPlayer: 0
+    isDefending: 0
+    isStunned: 0
+    defenseBonus: 0
+  battleUI: {fileID: 0}
+  battleMenu: {fileID: 0}
+  playerAnimator: {fileID: 2743638017210724509, guid: f06f740b48706314e887729198b2471a, type: 3}
+  enemyAnimator: {fileID: 4276585502242145038, guid: 5f5862b712ac05a448ea7d72d58fbe59, type: 3}
+  turnDelay: 1
+  skillCastDelay: 0.5
+  playerSkills:
+  - skillName: 
+    damage: 0
+    mpCost: 0
+    isAOE: 0
+    isHealing: 0
+    atkEffectPrefab: {fileID: 220746912184993894, guid: 94d5c86a105103e42bcc5ed72f04bdd2, type: 3}
+    boomEffectPrefab: {fileID: 334229378709780065, guid: 5feb9c57af73d3145a9494c478eb560f, type: 3}
+  - skillName: 
+    damage: 0
+    mpCost: 0
+    isAOE: 0
+    isHealing: 0
+    atkEffectPrefab: {fileID: 220746912184993894, guid: 2bb18b211b7a7b94cb2c53a3a242d2a7, type: 3}
+    boomEffectPrefab: {fileID: 334229378709780065, guid: 7e4671143def965448e08fa794b7b050, type: 3}
+  - skillName: 
+    damage: 0
+    mpCost: 0
+    isAOE: 0
+    isHealing: 0
+    atkEffectPrefab: {fileID: 220746912184993894, guid: f7e98867ef2e31841b75ff2e0d30b4a8, type: 3}
+    boomEffectPrefab: {fileID: 334229378709780065, guid: 90aa497c9be72e7498f98c3f82e1712c, type: 3}
+  enemySkills: []
 --- !u!1 &1487320432
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,6 +3509,6 @@ SceneRoots:
   - {fileID: 576057490}
   - {fileID: 358657288}
   - {fileID: 1442519449}
-  - {fileID: 6466496}
   - {fileID: 1276063858}
   - {fileID: 903219373}
+  - {fileID: 6466496}

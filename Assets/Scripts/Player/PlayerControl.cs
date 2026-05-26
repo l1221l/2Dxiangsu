@@ -32,6 +32,13 @@ public class PlayerControl : MonoBehaviour
     // 【只负责获取输入】
     void Update()
     {
+        // 战斗中禁止移动
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Battle)
+        {
+            _anim.SetFloat("Speed", 0);
+            return;
+        }
+
         // 1. 获取输入
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -69,6 +76,13 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
+        // 战斗中禁止移动
+        if (GameManager.Instance != null && GameManager.Instance.CurrentState == GameState.Battle)
+        {
+            if (_rb != null) _rb.velocity = Vector2.zero;
+            return;
+        }
+
         if (_rb != null)
         {
             _rb.velocity = moveDir.normalized * moveSpeed;
