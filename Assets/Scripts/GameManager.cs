@@ -83,6 +83,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void RestartGame()
     {
+        // 重置 UI 面板状态
+        SceneUI.ResetPanels();
+        
         CurrentFloor = 0;
         PlayerData.Initialize();
         LoadFloor(0);
