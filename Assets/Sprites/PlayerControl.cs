@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerControl : MonoBehaviour
 {
-    [Header("ÒÆ¶¯ÉèÖÃ")]
+    [Header("ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public float moveSpeed = 5f;
 
     private Animator _anim;
     private Rigidbody2D _rb;
     private Vector2 _lastDir;
-    private Vector2 moveDir; // °ÑÒÆ¶¯·½ÏòÌáÈ¡³É³ÉÔ±±äÁ¿
+    private Vector2 moveDir; // ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½É³ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ã€
+   
 
     void Awake()
     {
@@ -19,14 +18,14 @@ public class PlayerControl : MonoBehaviour
         _lastDir = new Vector2(0, -1);
     }
 
-    // ¡¾Ö»¸ºÔð»ñÈ¡ÊäÈë¡¿
+    // ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ë¡¿
     void Update()
     {
-        // 1. »ñÈ¡ÊäÈë
+        // 1. ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        // 2. Ç¿ÖÆ4·½ÏòÂß¼­
+        // 2. Ç¿ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
         moveDir = Vector2.zero;
         if (Mathf.Abs(h) > Mathf.Abs(v))
         {
@@ -37,19 +36,19 @@ public class PlayerControl : MonoBehaviour
             moveDir = new Vector2(0, v);
         }
 
-        // 3. ¸üÐÂ×îºó·½Ïò
+        // 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (moveDir.magnitude > 0)
         {
             _lastDir = moveDir;
         }
 
-        // 4. ¶¯»­²ÎÊý£¨¿ÉÒÔÁôÔÚ Update£©
+        // 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Updateï¿½ï¿½
         _anim.SetFloat("Horizontal", _lastDir.x);
         _anim.SetFloat("Vertical", _lastDir.y);
         _anim.SetFloat("Speed", moveDir.magnitude);
     }
 
-    // ¡¾Ö»¸ºÔðÎïÀíÒÆ¶¯¡¿¡ª¡ª ½â¾öÆ¯ÒÆ¡¢ÂÒ×ßµÄ¹Ø¼ü
+    // ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¯ï¿½Æ¡ï¿½ï¿½ï¿½ï¿½ßµÄ¹Ø¼ï¿½
     void FixedUpdate()
     {
         if (_rb != null)

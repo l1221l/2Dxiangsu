@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inside.unity
     guid: 845d0d9c21af48749a0720a2b69a6a5c
+  - enabled: 1
+    path: Assets/Scenes/BoosScene.unity
+    guid: d2659d06e9d28ba489bad3a90e63e5be
   m_configObjects: {}
