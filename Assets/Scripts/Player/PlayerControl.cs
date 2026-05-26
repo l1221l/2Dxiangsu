@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    [Header("ÒÆ¶¯ÉèÖÃ")]
+    [Header("ç§»åŠ¨è®¾ç½®")]
     public float moveSpeed = 5f;
 
     private Animator _anim;
     private Rigidbody2D _rb;
     private Vector2 _lastDir;
-    private Vector2 moveDir; // °ÑÒÆ¶¯·½ÏòÌáÈ¡³É³ÉÔ±±äÁ¿
+    private Vector2 moveDir; // æŠŠç§»åŠ¨æ–¹å‘æå–æˆæˆå‘˜å˜é‡
 
     void Awake()
     {
@@ -19,14 +19,14 @@ public class PlayerControl : MonoBehaviour
         _lastDir = new Vector2(0, -1);
     }
 
-    // ¡¾Ö»¸ºÔğ»ñÈ¡ÊäÈë¡¿
+    // ã€åªè´Ÿè´£è·å–è¾“å…¥ã€‘
     void Update()
     {
-        // 1. »ñÈ¡ÊäÈë
+        // 1. è·å–è¾“å…¥
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
-        // 2. Ç¿ÖÆ4·½ÏòÂß¼­
+        // 2. å¼ºåˆ¶4æ–¹å‘é€»è¾‘
         moveDir = Vector2.zero;
         if (Mathf.Abs(h) > Mathf.Abs(v))
         {
@@ -37,19 +37,19 @@ public class PlayerControl : MonoBehaviour
             moveDir = new Vector2(0, v);
         }
 
-        // 3. ¸üĞÂ×îºó·½Ïò
+        // 3. æ›´æ–°æœ€åæ–¹å‘
         if (moveDir.magnitude > 0)
         {
             _lastDir = moveDir;
         }
 
-        // 4. ¶¯»­²ÎÊı£¨¿ÉÒÔÁôÔÚ Update£©
+        // 4. åŠ¨ç”»å‚æ•°ï¼ˆå¯ä»¥ç•™åœ¨ Updateï¼‰
         _anim.SetFloat("Horizontal", _lastDir.x);
         _anim.SetFloat("Vertical", _lastDir.y);
         _anim.SetFloat("Speed", moveDir.magnitude);
     }
 
-    // ¡¾Ö»¸ºÔğÎïÀíÒÆ¶¯¡¿¡ª¡ª ½â¾öÆ¯ÒÆ¡¢ÂÒ×ßµÄ¹Ø¼ü
+    // ã€åªè´Ÿè´£ç‰©ç†ç§»åŠ¨ã€‘â€”â€” è§£å†³æ¼‚ç§»ã€ä¹±èµ°çš„å…³é”®
     void FixedUpdate()
     {
         if (_rb != null)
