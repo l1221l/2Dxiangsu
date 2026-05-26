@@ -13,6 +13,9 @@ public class Door1 : MonoBehaviour
         {
             SceneManager.LoadScene(targetSceneIndex);
             PlayerControl.instance.jumpScene(playerSpawnPosition);
+           
+           
         }
     }
+
 }
