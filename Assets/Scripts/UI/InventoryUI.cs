@@ -10,14 +10,14 @@ public class InventoryUI : MonoBehaviour
 {
     [Header("背包面板")]
     public GameObject InventoryPanel;
-    public Transform ItemContainer;
+    private Transform ItemContainer;
     public GameObject ItemSlotPrefab;
 
     [Header("物品详情")]
     public GameObject ItemDetailPanel;
-    public TextMeshProUGUI ItemNameText;
-    public TextMeshProUGUI ItemDescText;
-    public Image ItemIcon;
+    private Text ItemNameText;
+    private Text ItemDescText;
+    private Image ItemIcon;
 
     [Header("按钮")]
     public Button UseButton;
@@ -37,6 +37,12 @@ public class InventoryUI : MonoBehaviour
 
     void Update()
     {
+        ItemContainer= InventoryPanel.transform.Find("Scroll View/Viewport/Content");
+        ItemNameText = ItemDetailPanel.transform.Find("name").GetComponent<Text>();
+        ItemDescText = ItemDetailPanel.transform.Find("jianjie").GetComponent<Text>();
+        ItemIcon = ItemDetailPanel.transform.Find("itemImage").GetComponent<Image>();
+        UseButton = ItemDetailPanel.transform.Find("Button (Legacy)").GetComponent<Button>();
+        CloseButton= InventoryPanel.transform.Find("returnbtn").GetComponent<Button>();
         // 按 I 打开/关闭背包
         if (Input.GetKeyDown(KeyCode.I) && GameManager.Instance.CurrentState != GameState.Battle)
         {
