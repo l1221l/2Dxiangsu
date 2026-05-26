@@ -77,7 +77,10 @@ PlayerSettings:
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
+<<<<<<< HEAD
   androidPredictiveBackSupport: 1
+=======
+>>>>>>> 808b526ea404ab0e0166516948f6b424b4efa05b
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
   runInBackground: 0

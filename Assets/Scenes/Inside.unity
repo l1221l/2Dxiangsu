@@ -3112,9 +3112,9 @@ GameObject:
   - component: {fileID: 1824720175}
   - component: {fileID: 1824720174}
   - component: {fileID: 1824720173}
-  - component: {fileID: 1824720172}
   - component: {fileID: 1824720171}
   - component: {fileID: 1824720170}
+  - component: {fileID: 1824720176}
   m_Layer: 6
   m_Name: character_1
   m_TagString: Untagged
@@ -3193,6 +3193,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
+<<<<<<< HEAD
   m_Constraints: 4
 --- !u!114 &1824720172
 MonoBehaviour:
@@ -3207,6 +3208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+=======
+  m_Constraints: 0
+>>>>>>> 808b526ea404ab0e0166516948f6b424b4efa05b
 --- !u!95 &1824720173
 Animator:
   serializedVersion: 5
@@ -3295,6 +3299,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1824720176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824720169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 119aed69ac1f9b84c85e61e95a0b225e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1898413025
 GameObject:
   m_ObjectHideFlags: 0
