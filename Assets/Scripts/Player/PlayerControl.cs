@@ -11,8 +11,19 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _lastDir;
     private Vector2 moveDir;
+    public static PlayerControl instance;
+
     void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _lastDir = new Vector2(0, -1);
@@ -45,7 +56,14 @@ public class PlayerControl : MonoBehaviour
         _anim.SetFloat("Horizontal", _lastDir.x);
         _anim.SetFloat("Vertical", _lastDir.y);
         _anim.SetFloat("Speed", moveDir.magnitude);
+        ////检查是否在场景0，如果是则销毁自己
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Destroy(gameObject);
+        }
     }
+    
+
 
     // 【只负责物理移动】—— 解决漂移、乱走的关键
 
@@ -55,5 +73,10 @@ public class PlayerControl : MonoBehaviour
         {
             _rb.velocity = moveDir.normalized * moveSpeed;
         }
+    }
+    //位置重新赋值
+    public void jumpScene( Vector2 newPosition)
+    {
+        transform.position = newPosition;
     }
 }
